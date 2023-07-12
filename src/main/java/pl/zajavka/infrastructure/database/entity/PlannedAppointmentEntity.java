@@ -35,6 +35,6 @@ public class PlannedAppointmentEntity {
     @JoinColumn(name = "doctor_id")
     private DoctorEntity doctor;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "plannedAppointmentId")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "plannedAppointment")
     private CompletedAppointmentEntity completedAppointment;
 }

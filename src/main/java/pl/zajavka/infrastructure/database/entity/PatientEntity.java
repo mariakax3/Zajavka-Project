@@ -10,7 +10,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Builder
-@ToString(of = {"patientId", "name", "surname", "pesel"})
+@ToString(of = {"patientId", "name", "surname", "birthdate", "pesel"})
 @EqualsAndHashCode(of = "patientId")
 @NoArgsConstructor
 @AllArgsConstructor

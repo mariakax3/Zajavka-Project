@@ -26,6 +26,6 @@ public class MedicineEntity {
     private String dosage;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "medicine_id")
+    @JoinColumn(name = "completed_appointment_id")
     private CompletedAppointmentEntity completedAppointment;
 }
