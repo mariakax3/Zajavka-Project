@@ -37,7 +37,6 @@
                     <th>Surname</th>
                     <th>Specialization</th>
                     <th>Pesel</th>
-                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -46,10 +45,27 @@
                     <td th:text="${doctor.surname}"></td>
                     <td th:text="${doctor.specialization}"></td>
                     <td th:text="${doctor.pesel}"></td>
-                    <td><a th:href="@{/patient/appointment}" class="btn btn-info" role="button">Make an appointment</a></td>
                 </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div class="container">
+            <h2>Do what You want!</h2>
+
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <a th:href="@{/appointment/new}" class="btn btn-success" role="button">Make an appointment</a>
+                </div>
+                <div class="col-md-4">
+                    <a th:href="@{/appointment/cancel}" class="btn btn-success" role="button">Cancel an appointment</a>
+                </div>
+                <div class="col-md-4">
+                    <a th:href="@{/appointment/history}" class="btn btn-success" role="button">Treatment history</a>
+                </div>
+            </div>
+            <br>
+            <br>
         </div>
 
     </div>
