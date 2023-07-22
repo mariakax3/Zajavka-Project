@@ -33,6 +33,6 @@ public class DoctorEntity {
     @Column(name = "pesel", unique = true)
     private String pesel;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "doctor")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctor")
     private Set<PlannedAppointmentEntity> appointments;
 }

@@ -3,7 +3,7 @@ package pl.zajavka.infrastructure.database.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Getter
@@ -29,11 +29,11 @@ public class PatientEntity {
     private String surname;
 
     @Column(name = "birthdate")
-    private OffsetDateTime birthdate;
+    private LocalDate birthdate;
 
     @Column(name = "pesel", unique = true)
     private String pesel;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
     private Set<PlannedAppointmentEntity> appointments;
 }

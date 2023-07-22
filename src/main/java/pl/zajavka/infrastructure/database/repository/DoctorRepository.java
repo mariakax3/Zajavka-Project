@@ -8,7 +8,6 @@ import pl.zajavka.infrastructure.database.repository.jpa.DoctorJpaRepository;
 import pl.zajavka.infrastructure.database.repository.mapper.DoctorEntityMapper;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 @AllArgsConstructor

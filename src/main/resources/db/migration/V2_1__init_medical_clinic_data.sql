@@ -9,3 +9,6 @@ INSERT INTO doctor (name, surname, specialization, pesel) VALUES
 ('Ewa', 'Wszystkowidząca', 'Okulistyka', '88090978765'),
 ('Paweł', 'Kieł', 'Stomatologia', '70051455790'),
 ('Marcin', 'Skorpion', 'Onkologia', '76111123415');
+
+INSERT INTO planned_appointment (date_time, patient_comment, patient_id, doctor_id) VALUES
+('2023-09-10 10:30:00', 'Widzę, że nic nie widzę', 1, 2);

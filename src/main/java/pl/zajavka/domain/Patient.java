@@ -2,7 +2,7 @@ package pl.zajavka.domain;
 
 import lombok.*;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
 import java.util.Set;
 
 @With
@@ -15,7 +15,7 @@ public class Patient {
     Integer patientId;
     String name;
     String surname;
-    OffsetDateTime birthdate;
+    LocalDate birthdate;
     String pesel;
     Set<PlannedAppointment> appointments;
 }
