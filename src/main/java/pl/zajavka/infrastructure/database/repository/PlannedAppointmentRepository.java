@@ -22,4 +22,12 @@ public class PlannedAppointmentRepository implements PlannedAppointmentDAO {
                 .map(plannedAppointmentEntityMapper::mapFromEntity)
                 .toList();
     }
+
+    @Override
+    public List<PlannedAppointment> findPlannedAppointments(String patientId) {
+        return plannedAppointmentJpaRepository.findByPatientId(Integer.parseInt(patientId))
+                .stream()
+                .map(plannedAppointmentEntityMapper::mapFromEntity)
+                .toList();
+    }
 }

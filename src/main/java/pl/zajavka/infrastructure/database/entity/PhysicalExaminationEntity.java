@@ -24,8 +24,4 @@ public class PhysicalExaminationEntity {
 
     @Column(name = "result")
     private String result;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "completed_appointment_id")
-    private CompletedAppointmentEntity completedAppointment;
 }

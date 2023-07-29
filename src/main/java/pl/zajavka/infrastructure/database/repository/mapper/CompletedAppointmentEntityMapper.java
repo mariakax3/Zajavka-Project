@@ -13,5 +13,8 @@ public interface CompletedAppointmentEntityMapper {
 
     @Mapping(target = "patient.appointments", ignore = true)
     @Mapping(target = "doctor.appointments", ignore = true)
+    @Mapping(target = "plannedAppointment.doctor.appointments", ignore = true)
+    @Mapping(target = "plannedAppointment.patient.appointments", ignore = true)
+    @Mapping(target = "physicalExamination.completedAppointment", ignore = true)
     CompletedAppointment mapFromEntity(CompletedAppointmentEntity entity);
 }

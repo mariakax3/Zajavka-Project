@@ -32,9 +32,11 @@ public class CompletedAppointmentEntity {
     @JoinColumn(name = "planned_appointment_id")
     private PlannedAppointmentEntity plannedAppointment;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "completedAppointment")
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "physical_examination_id")
     private Set<PhysicalExaminationEntity> physicalExaminations;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "completedAppointment")
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "medicine_id")
     private Set<MedicineEntity> medicines;
 }
