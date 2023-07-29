@@ -18,7 +18,7 @@ INSERT INTO physical_examination (name, result)
 VALUES ('Tomografia komputerowa', 'OK');
 
 INSERT INTO medicine (name, dosage)
-VALUES ('Ketonal', '1 tabletka 1 na dobę');
+VALUES ('Ketonal', '1 tabletka raz na dobę');
 
 INSERT INTO completed_appointment (doctor_comment, cost, planned_appointment_id, physical_examination_id, medicine_id)
 VALUES ('Do obserwacji', 250, 1, 1, 1);

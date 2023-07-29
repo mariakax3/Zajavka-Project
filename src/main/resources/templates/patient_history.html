@@ -15,6 +15,84 @@
         <h1>Zajavka Medical Clinic!</h1>
     </div>
 
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <a th:href="@{/}" class="btn btn-info" role="button">Go back to the main page</a>
+            </div>
+        </div>
+        <br>
+        <p>Here you can take a look at your treatment history:</p>
 
+        <div>
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th>Date and time</th>
+                    <th>Doctor</th>
+                    <th>Patient comment</th>
+                    <th>Physical examination</th>
+                    <th>Prescription</th>
+                    <th>Doctor comment</th>
+                    <th>Cost</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="appointment : ${completedAppointmentDTOs}">
+                    <td th:text="${appointment.plannedAppointment.dateTime}"></td>
+                    <td th:text="${appointment.plannedAppointment.doctor.name} + ' ' + ${appointment.plannedAppointment.doctor.surname}"></td>
+                    <td th:text="${appointment.plannedAppointment.patientComment}"></td>
+                    <td>
+                        <table class="table">
+                            <thead class="table-dark">
+                            <tr>
+                                <th>Name</th>
+                                <th>Result</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="physicalExamination : ${appointment.physicalExaminations}">
+                                <td th:text="${physicalExamination.name}"></td>
+                                <td th:text="${physicalExamination.result}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <table class="table">
+                            <thead class="table-dark">
+                            <tr>
+                                <th>Name</th>
+                                <th>Dosage</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="medicine : ${appointment.medicines}">
+                                <td th:text="${medicine.name}"></td>
+                                <td th:text="${medicine.dosage}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td th:text="${appointment.doctorComment}"></td>
+                    <td th:text="${appointment.cost}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <br>
+        <br>
+
+
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <a th:href="@{/patient}" class="btn btn-success" role="button">Go back</a>
+            </div>
+        </div>
+
+        <br>
+        <br>
+    </div>
 </body>
 </html>
