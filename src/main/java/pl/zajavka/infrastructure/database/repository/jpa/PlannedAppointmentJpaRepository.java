@@ -12,4 +12,7 @@ public interface PlannedAppointmentJpaRepository extends JpaRepository<PlannedAp
 
     @Query("SELECT pa FROM PlannedAppointmentEntity pa WHERE pa.patient.patientId = :patientId")
     List<PlannedAppointmentEntity> findByPatientId(int patientId);
+
+    @Query("SELECT pa FROM PlannedAppointmentEntity pa WHERE pa.doctor.doctorId = :doctorId")
+    List<PlannedAppointmentEntity> findByDoctorId(int doctorId);
 }

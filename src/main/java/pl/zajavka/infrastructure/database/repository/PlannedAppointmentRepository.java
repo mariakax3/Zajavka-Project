@@ -17,14 +17,15 @@ public class PlannedAppointmentRepository implements PlannedAppointmentDAO {
     private final PlannedAppointmentEntityMapper plannedAppointmentEntityMapper;
 
     @Override
-    public List<PlannedAppointment> findPlannedAppointments() {
-        return plannedAppointmentJpaRepository.findAll().stream()
+    public List<PlannedAppointment> findPlannedAppointmentsForDoctor(String doctorId) {
+        return plannedAppointmentJpaRepository.findByDoctorId(Integer.parseInt(doctorId))
+                .stream()
                 .map(plannedAppointmentEntityMapper::mapFromEntity)
                 .toList();
     }
 
     @Override
-    public List<PlannedAppointment> findPlannedAppointments(String patientId) {
+    public List<PlannedAppointment> findPlannedAppointmentsForPatient(String patientId) {
         return plannedAppointmentJpaRepository.findByPatientId(Integer.parseInt(patientId))
                 .stream()
                 .map(plannedAppointmentEntityMapper::mapFromEntity)

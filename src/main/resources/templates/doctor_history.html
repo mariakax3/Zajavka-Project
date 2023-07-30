@@ -22,14 +22,14 @@
             </div>
         </div>
         <br>
-        <p>Here you can take a look at your treatment history:</p>
+        <p>Here you can take a look at your previous appointments:</p>
 
         <div>
             <table class="table">
                 <thead class="table-dark">
                 <tr>
                     <th>Date and time</th>
-                    <th>Doctor</th>
+                    <th>Patient</th>
                     <th>Patient comment</th>
                     <th>Physical examination</th>
                     <th>Prescription</th>
@@ -40,7 +40,7 @@
                 <tbody>
                 <tr th:each="appointment : ${completedAppointmentDTOs}">
                     <td th:text="${appointment.plannedAppointment.dateTime}"></td>
-                    <td th:text="${appointment.plannedAppointment.doctor.name} + ' ' + ${appointment.plannedAppointment.doctor.surname}"></td>
+                    <td th:text="${appointment.plannedAppointment.patient.name} + ' ' + ${appointment.plannedAppointment.patient.surname}"></td>
                     <td th:text="${appointment.plannedAppointment.patientComment}"></td>
                     <td>
                         <table class="table">

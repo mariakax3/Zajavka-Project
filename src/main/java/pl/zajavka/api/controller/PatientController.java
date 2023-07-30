@@ -38,10 +38,10 @@ public class PatientController {
         return "patient_portal";
     }
 
-    @GetMapping("/history/{patientId}")
+    @GetMapping("/{patientId}/history")
     public String patientHistory(@PathVariable String patientId, Model model) {
         List<CompletedAppointmentDTO> completedAppointments =
-                completedAppointmentService.findCompletedAppointments(patientId).stream()
+                completedAppointmentService.findCompletedAppointmentsByPatientId(patientId).stream()
                         .map(completedAppointmentMapper::map)
                         .toList();
 

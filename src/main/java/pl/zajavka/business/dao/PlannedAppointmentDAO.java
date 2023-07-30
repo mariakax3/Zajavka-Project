@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface PlannedAppointmentDAO {
 
-    List<PlannedAppointment> findPlannedAppointments();
+    List<PlannedAppointment> findPlannedAppointmentsForDoctor(String patientId);
 
-    List<PlannedAppointment> findPlannedAppointments(String patientId);
+    List<PlannedAppointment> findPlannedAppointmentsForPatient(String patientId);
 }
