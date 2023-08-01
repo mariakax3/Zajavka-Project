@@ -13,8 +13,18 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class PatientDTO {
 
+    private Integer patientId;
     private String name;
     private String surname;
     private LocalDate birthdate;
     private String pesel;
+
+    public static PatientDTO buildDefault() {
+        return PatientDTO.builder()
+                .name("Stefan")
+                .surname("Chorobliwy")
+                .birthdate(LocalDate.of(1987, 10, 12))
+                .pesel("87101298078")
+                .build();
+    }
 }

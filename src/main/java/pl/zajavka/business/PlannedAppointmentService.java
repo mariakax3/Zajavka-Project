@@ -14,10 +14,19 @@ import java.util.List;
 public class PlannedAppointmentService {
 
     private final PlannedAppointmentDAO plannedAppointmentDAO;
+
     public List<PlannedAppointment> findPlannedAppointmentsForDoctor(String doctorId) {
         List<PlannedAppointment> plannedAppointments =
                 plannedAppointmentDAO.findPlannedAppointmentsForDoctor(doctorId);
         log.info("Planned appointments for doctor with ID [{}] : [{}]", doctorId, plannedAppointments.size());
         return plannedAppointments;
+    }
+
+    public PlannedAppointment findPlannedAppointmentById(String plannedAppointmentId) {
+        return plannedAppointmentDAO.findPlannedAppointmentById(plannedAppointmentId);
+    }
+
+    public Integer getDoctorId(String plannedAppointmentId) {
+        return plannedAppointmentDAO.getDoctorId(plannedAppointmentId);
     }
 }

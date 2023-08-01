@@ -11,7 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PhysicalExaminationDTO {
 
-    String name;
-    String result;
-    CompletedAppointmentDTO completedAppointment;
+    private Integer physicalExaminationId;
+    private String name;
+    private String result;
+    private CompletedAppointmentDTO completedAppointment;
+
+    public static PhysicalExaminationDTO buildDefault() {
+        return PhysicalExaminationDTO.builder()
+                .name("USG żołądka")
+                .result("Brak zmian")
+                .build();
+    }
 }

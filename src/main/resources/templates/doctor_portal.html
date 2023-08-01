@@ -41,7 +41,8 @@
                         <th>Patient</th>
                         <th>Birthdate</th>
                         <th>Patient comment</th>
-                        <th>Details</th>
+                        <th>Patient's treatment history</th>
+                        <th>Add appointment details</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -50,7 +51,8 @@
                         <td th:text="${appointment.patient.name} + ' ' + ${appointment.patient.surname}"></td>
                         <td th:text="${appointment.patient.birthdate}"></td>
                         <td th:text="${appointment.patientComment}"></td>
-                        <td><a th:href="@{/appointment/details}" class="btn btn-info" role="button">Details</a></td>
+                        <td><a th:href="@{'/patient/' + ${appointment.patient.patientId} + '/history'}" class="btn btn-info" role="button">See history</a></td>
+                        <td><a th:href="@{'/appointment/details/' + ${appointment.plannedAppointmentId}}" class="btn btn-info" role="button">Add details</a></td>
                     </tr>
                     </tbody>
                 </table>

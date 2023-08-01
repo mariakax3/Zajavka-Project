@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.zajavka.domain.PlannedAppointment;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -15,9 +14,19 @@ import java.util.List;
 @AllArgsConstructor
 public class CompletedAppointmentDTO {
 
-    String doctorComment;
-    BigDecimal cost;
-    PlannedAppointment plannedAppointment;
-    List<PhysicalExaminationDTO> physicalExaminations;
-    List<MedicineDTO> medicines;
+    private String doctorComment;
+    private BigDecimal cost;
+    private PlannedAppointmentDTO plannedAppointment;
+    private List<PhysicalExaminationDTO> physicalExaminations;
+    private List<MedicineDTO> medicines;
+
+    public static CompletedAppointmentDTO buildDefault() {
+        return CompletedAppointmentDTO.builder()
+                .doctorComment("Do obserwacji")
+                .cost(BigDecimal.valueOf(250))
+                .plannedAppointment(PlannedAppointmentDTO.buildDefault())
+                .physicalExaminations(List.of(PhysicalExaminationDTO.buildDefault()))
+                .medicines(List.of(MedicineDTO.buildDefault()))
+                .build();
+    }
 }

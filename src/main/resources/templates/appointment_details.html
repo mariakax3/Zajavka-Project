@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en-GB">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+          crossorigin="anonymous">
+    <title>Zajavka Medical Clinic</title>
+</head>
+
+<body>
+    <div class="container">
+        <br>
+        <h1>Zajavka Medical Clinic!</h1>
+    </div>
+
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <a th:href="@{/}" class="btn btn-info" role="button">Go back to the main page</a>
+            </div>
+        </div>
+        <br>
+        <p>Current appointment:</p>
+
+        <div>
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th>Date and time</th>
+                    <th>Patient</th>
+                    <th>Birthdate</th>
+                    <th>Patient comment</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <td th:text="${plannedAppointmentDTO.dateTime}"></td>
+                    <td th:text="${plannedAppointmentDTO.patient.name} + ' ' + ${plannedAppointmentDTO.patient.surname}"></td>
+                    <td th:text="${plannedAppointmentDTO.patient.birthdate}"></td>
+                    <td th:text="${plannedAppointmentDTO.patientComment}"></td>
+                </tbody>
+            </table>
+        </div>
+
+        <br>
+        <br>
+
+        <p>Fill appointment's data:</p>
+
+        <form action="#" th:action="@{'/appointment/details/' + ${plannedAppointmentDTO.plannedAppointmentId}}" th:object="${completedAppointmentDTO}" method="post">
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="doctorComment">Doctor comment:</label>
+                        </div>
+                        <div class="col-md-3">
+                            <textarea id="doctorComment" th:field="*{doctorComment}" rows="5" cols="70" required="required"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="col-md-12">
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="physicalExaminations">Physical examination:</label>
+                        </div>
+                        <div class="col-md-3">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Result</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr id="physicalExaminations" th:each="physicalExamination, itemStat : *{physicalExaminations}">
+                                    <td><input th:field="*{physicalExaminations[__${itemStat.index}__].name}" /></td>
+                                    <td><input th:field="*{physicalExaminations[__${itemStat.index}__].result}" /></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="col-md-12">
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="medicines">Prescription:</label>
+                        </div>
+                        <div class="col-md-3">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Dosage</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr id="medicines" th:each="medicine, itemStat : *{medicines}">
+                                    <td><input th:field="*{medicines[__${itemStat.index}__].name}" /></td>
+                                    <td><input th:field="*{medicines[__${itemStat.index}__].dosage}" /></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="col-md-12">
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="cost">Cost:</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" id="cost" th:field="*{cost}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <input type="submit" value="Confirm" class="btn btn-success">
+                </div>
+            </div>
+        </form>
+
+        <br>
+        <br>
+    </div>
+</body>
+</html>

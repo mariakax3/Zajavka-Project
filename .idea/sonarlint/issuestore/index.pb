@@ -15,3 +15,5 @@ f
 6src/main/java/pl/zajavka/MedicalClinicApplication.java,7\2\722b28e104bec36230b1f64fad73204d67507169
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+”
+dsrc/main/java/pl/zajavka/infrastructure/database/repository/jpa/PlannedAppointmentJpaRepository.java,2\9\290bd6c27e376df7b0373c2121eaa9a1c5d10679

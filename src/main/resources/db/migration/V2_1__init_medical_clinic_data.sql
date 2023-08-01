@@ -11,7 +11,7 @@ VALUES ('Adam', 'Skalpel', 'Chirurgia', '78041156534'),
        ('Marcin', 'Skorpion', 'Onkologia', '76111123415');
 
 INSERT INTO planned_appointment (date_time, patient_comment, patient_id, doctor_id)
-VALUES ('2023-07-16 12:15:00', 'Silne bóle głowy', 4, 4),
+VALUES ('2023-07-16 12:15:00', 'Silne bóle brzucha', 4, 4),
        ('2023-09-10 10:30:00', 'Widzę, że nic nie widzę', 1, 2);
 
 INSERT INTO physical_examination (name, result)

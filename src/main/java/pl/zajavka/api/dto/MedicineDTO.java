@@ -11,7 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MedicineDTO {
 
-    String name;
-    String dosage;
-    CompletedAppointmentDTO completedAppointment;
+    private Integer medicineId;
+    private String name;
+    private String dosage;
+    private CompletedAppointmentDTO completedAppointment;
+
+    public static MedicineDTO buildDefault() {
+        return MedicineDTO.builder()
+                .name("Pantopraz 20 mg")
+                .dosage("1 tabletka na czczo")
+                .build();
+    }
 }
