@@ -24,7 +24,14 @@
         <br>
         <p>Here you can take a look at your treatment history:</p>
 
-        <div>
+        <br>
+        <br>
+
+        <div th:if="${#lists.isEmpty(completedAppointmentDTOs)}">
+            <h5 th:text="${patientName} + ' doesn\'t have medical history yet.'" />
+        </div>
+
+        <div th:if="${not #lists.isEmpty(completedAppointmentDTOs)}">
             <table class="table">
                 <thead class="table-dark">
                 <tr>

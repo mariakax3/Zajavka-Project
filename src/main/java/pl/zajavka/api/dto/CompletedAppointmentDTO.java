@@ -22,7 +22,7 @@ public class CompletedAppointmentDTO {
 
     public static CompletedAppointmentDTO buildDefault() {
         return CompletedAppointmentDTO.builder()
-                .doctorComment("Do obserwacji")
+                .doctorComment("Do kontroli za rok")
                 .cost(BigDecimal.valueOf(250))
                 .plannedAppointment(PlannedAppointmentDTO.buildDefault())
                 .physicalExaminations(List.of(PhysicalExaminationDTO.buildDefault()))

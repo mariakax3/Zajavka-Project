@@ -15,10 +15,10 @@ VALUES ('2023-07-16 12:15:00', 'Silne bóle brzucha', 4, 4),
        ('2023-09-10 10:30:00', 'Widzę, że nic nie widzę', 1, 2);
 
 INSERT INTO physical_examination (name, result)
-VALUES ('Tomografia komputerowa', 'OK');
+VALUES ('USG żołądka', 'Brak zmian');
 
 INSERT INTO medicine (name, dosage)
-VALUES ('Ketonal', '1 tabletka raz na dobę');
+VALUES ('Pantopraz 20 mg', '1 tabletka na czczo');
 
 INSERT INTO completed_appointment (doctor_comment, cost, planned_appointment_id, physical_examination_id, medicine_id)
 VALUES ('Do obserwacji', 250, 1, 1, 1);

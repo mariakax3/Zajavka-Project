@@ -33,7 +33,11 @@
             <br>
             <br>
 
-            <div>
+            <div th:if="${#lists.isEmpty(plannedAppointmentDTOs)}">
+                <h5>You currently have no appointments scheduled. Feel free!</h5>
+            </div>
+
+            <div th:if="${not #lists.isEmpty(plannedAppointmentDTOs)}">
                 <table class="table">
                     <thead class="table-dark">
                     <tr>
@@ -63,13 +67,13 @@
 
             <div class="row mt-3">
                 <div class="col-md-4">
-                    <a th:href="@{/doctor/calendar}" class="btn btn-success" role="button">Update your calendar</a>
+                    <a th:href="@{'/doctor/' + ${doctorId} + '/calendar'}" class="btn btn-success" role="button">Update your calendar</a>
                 </div>
                 <div class="col-md-4">
                     <a th:href="@{/appointment/cancel}" class="btn btn-success" role="button">Cancel an appointment</a>
                 </div>
                 <div class="col-md-4">
-                    <a th:href="@{/doctor/history}" class="btn btn-success" role="button">See your previous appointments</a>
+                    <a th:href="@{'/doctor/' + ${doctorId} + '/history'}" class="btn btn-success" role="button">See your previous appointments</a>
                 </div>
             </div>
             <br>

@@ -18,8 +18,8 @@ public class PhysicalExaminationDTO {
 
     public static PhysicalExaminationDTO buildDefault() {
         return PhysicalExaminationDTO.builder()
-                .name("USG żołądka")
-                .result("Brak zmian")
+                .name("Komputerowe badanie wzroku")
+                .result("Pogorszenie o 0.25 D na obu oczach")
                 .build();
     }
 }

@@ -24,7 +24,14 @@
         <br>
         <p>Here you can take a look at your previous appointments:</p>
 
-        <div>
+        <br>
+        <br>
+
+        <div th:if="${#lists.isEmpty(completedAppointmentDTOs)}">
+            <h5>You don't have any completed appointments yet.</h5>
+        </div>
+
+        <div th:if="${not #lists.isEmpty(completedAppointmentDTOs)}">
             <table class="table">
                 <thead class="table-dark">
                 <tr>
@@ -86,7 +93,7 @@
 
         <div class="row mt-3">
             <div class="col-md-4">
-                <a th:href="@{/patient}" class="btn btn-success" role="button">Go back</a>
+                <a th:href="@{'/doctor/' + ${doctorId}}" class="btn btn-success" role="button">Go back</a>
             </div>
         </div>
 

@@ -53,18 +53,6 @@
                 <div class="col-md-12">
                     <div class="row mt-3">
                         <div class="col-md-3">
-                            <label for="doctorComment">Doctor comment:</label>
-                        </div>
-                        <div class="col-md-3">
-                            <textarea id="doctorComment" th:field="*{doctorComment}" rows="5" cols="70" required="required"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <br>
-                <div class="col-md-12">
-                    <div class="row mt-3">
-                        <div class="col-md-3">
                             <label for="physicalExaminations">Physical examination:</label>
                         </div>
                         <div class="col-md-3">
@@ -77,8 +65,8 @@
                                 </thead>
                                 <tbody>
                                 <tr id="physicalExaminations" th:each="physicalExamination, itemStat : *{physicalExaminations}">
-                                    <td><input th:field="*{physicalExaminations[__${itemStat.index}__].name}" /></td>
-                                    <td><input th:field="*{physicalExaminations[__${itemStat.index}__].result}" /></td>
+                                    <td><textarea th:field="*{physicalExaminations[__${itemStat.index}__].name}" rows="2" cols="30" /></td>
+                                    <td><textarea th:field="*{physicalExaminations[__${itemStat.index}__].result}" rows="2" cols="30" /></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -102,8 +90,8 @@
                                 </thead>
                                 <tbody>
                                 <tr id="medicines" th:each="medicine, itemStat : *{medicines}">
-                                    <td><input th:field="*{medicines[__${itemStat.index}__].name}" /></td>
-                                    <td><input th:field="*{medicines[__${itemStat.index}__].dosage}" /></td>
+                                    <td><textarea th:field="*{medicines[__${itemStat.index}__].name}" rows="2" cols="30" /></td>
+                                    <td><textarea th:field="*{medicines[__${itemStat.index}__].dosage}" rows="2" cols="30" /></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -119,6 +107,18 @@
                         </div>
                         <div class="col-md-3">
                             <input type="text" id="cost" th:field="*{cost}"/>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="col-md-12">
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="doctorComment">Doctor comment:</label>
+                        </div>
+                        <div class="col-md-3">
+                            <textarea id="doctorComment" th:field="*{doctorComment}" rows="5" cols="70" required="required"></textarea>
                         </div>
                     </div>
                 </div>

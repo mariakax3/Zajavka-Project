@@ -18,8 +18,7 @@ public class MedicineDTO {
 
     public static MedicineDTO buildDefault() {
         return MedicineDTO.builder()
-                .name("Pantopraz 20 mg")
-                .dosage("1 tabletka na czczo")
+                .name("Okulary/soczewki")
                 .build();
     }
 }

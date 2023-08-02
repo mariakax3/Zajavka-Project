@@ -12,6 +12,8 @@ import pl.zajavka.api.dto.mapper.CompletedAppointmentMapper;
 import pl.zajavka.api.dto.mapper.PlannedAppointmentMapper;
 import pl.zajavka.business.CompletedAppointmentService;
 import pl.zajavka.business.PlannedAppointmentService;
+import pl.zajavka.domain.CompletedAppointment;
+import pl.zajavka.domain.PlannedAppointment;
 
 import java.util.List;
 
@@ -29,11 +31,19 @@ public class DoctorController {
 
     @GetMapping("/{doctorId}")
     public String homePage(@PathVariable String doctorId, Model model) {
+        List<PlannedAppointmentDTO> completedAppointmentIds =
+                completedAppointmentService.findCompletedAppointmentsByDoctorId(doctorId).stream()
+                        .map(completedAppointmentMapper::map)
+                        .map(CompletedAppointmentDTO::getPlannedAppointment)
+                        .toList();
+
         List<PlannedAppointmentDTO> plannedAppointments =
                 plannedAppointmentService.findPlannedAppointmentsForDoctor(doctorId).stream()
                         .map(plannedAppointmentMapper::map)
+                        .filter(appointment -> !completedAppointmentIds.contains(appointment))
                         .toList();
 
+        model.addAttribute("doctorId", doctorId);
         model.addAttribute("plannedAppointmentDTOs", plannedAppointments);
 
         return "doctor_portal";
@@ -46,6 +56,7 @@ public class DoctorController {
                         .map(completedAppointmentMapper::map)
                         .toList();
 
+        model.addAttribute("doctorId", doctorId);
         model.addAttribute("completedAppointmentDTOs", completedAppointments);
 
         return "doctor_history";

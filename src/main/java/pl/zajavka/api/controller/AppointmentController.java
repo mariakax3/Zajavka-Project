@@ -38,6 +38,9 @@ public class AppointmentController {
             ModelMap modelMap
     ) {
         Integer doctorId = plannedAppointmentService.getDoctorId(plannedAppointmentId);
+
+        //save do bazy
+
         modelMap.addAllAttributes(prepareNecessaryData(plannedAppointmentId));
         return String.format("redirect:/doctor/%s/history", doctorId);
     }
