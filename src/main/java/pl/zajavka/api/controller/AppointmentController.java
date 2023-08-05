@@ -10,6 +10,8 @@ import pl.zajavka.api.dto.CompletedAppointmentDTO;
 import pl.zajavka.api.dto.PlannedAppointmentDTO;
 import pl.zajavka.api.dto.mapper.PlannedAppointmentMapper;
 import pl.zajavka.business.CompletedAppointmentService;
+import pl.zajavka.business.MedicineService;
+import pl.zajavka.business.PhysicalExaminationService;
 import pl.zajavka.business.PlannedAppointmentService;
 import pl.zajavka.domain.PlannedAppointment;
 
@@ -26,6 +28,8 @@ public class AppointmentController {
     private final PlannedAppointmentService plannedAppointmentService;
     private final PlannedAppointmentMapper plannedAppointmentMapper;
     private final CompletedAppointmentService completedAppointmentService;
+    private final MedicineService medicineService;
+    private final PhysicalExaminationService physicalExaminationService;
 
     @GetMapping("/details/{plannedAppointmentId}")
     public ModelAndView appointmentDetails(@PathVariable String plannedAppointmentId) {

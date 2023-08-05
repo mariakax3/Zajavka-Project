@@ -31,11 +31,11 @@ public class CompletedAppointmentEntity {
     @JoinColumn(name = "planned_appointment_id")
     private PlannedAppointmentEntity plannedAppointment;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "physical_examination_id")
     private PhysicalExaminationEntity physicalExamination;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "medicine_id")
     private MedicineEntity medicine;
 }
