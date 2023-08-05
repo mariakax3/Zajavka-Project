@@ -12,8 +12,6 @@ import pl.zajavka.api.dto.mapper.CompletedAppointmentMapper;
 import pl.zajavka.api.dto.mapper.PlannedAppointmentMapper;
 import pl.zajavka.business.CompletedAppointmentService;
 import pl.zajavka.business.PlannedAppointmentService;
-import pl.zajavka.domain.CompletedAppointment;
-import pl.zajavka.domain.PlannedAppointment;
 
 import java.util.List;
 
