@@ -53,7 +53,7 @@
                 <div class="col-md-12">
                     <div class="row mt-3">
                         <div class="col-md-3">
-                            <label for="physicalExaminations">Physical examination:</label>
+                            <label for="physicalExamination">Physical examination:</label>
                         </div>
                         <div class="col-md-3">
                             <table>
@@ -64,9 +64,9 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr id="physicalExaminations" th:each="physicalExamination, itemStat : *{physicalExaminations}">
-                                    <td><textarea th:field="*{physicalExaminations[__${itemStat.index}__].name}" rows="2" cols="30" /></td>
-                                    <td><textarea th:field="*{physicalExaminations[__${itemStat.index}__].result}" rows="2" cols="30" /></td>
+                                <tr id="physicalExamination" th:field="*{physicalExamination}">
+                                    <td><textarea th:field="*{physicalExamination.name}" rows="2" cols="30" /></td>
+                                    <td><textarea th:field="*{physicalExamination.result}" rows="2" cols="30" /></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -78,7 +78,7 @@
                 <div class="col-md-12">
                     <div class="row mt-3">
                         <div class="col-md-3">
-                            <label for="medicines">Prescription:</label>
+                            <label for="medicine">Prescription:</label>
                         </div>
                         <div class="col-md-3">
                             <table>
@@ -89,9 +89,9 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr id="medicines" th:each="medicine, itemStat : *{medicines}">
-                                    <td><textarea th:field="*{medicines[__${itemStat.index}__].name}" rows="2" cols="30" /></td>
-                                    <td><textarea th:field="*{medicines[__${itemStat.index}__].dosage}" rows="2" cols="30" /></td>
+                                <tr id="medicine" th:field="*{medicine}">
+                                    <td><textarea th:field="*{medicine.name}" rows="2" cols="30" /></td>
+                                    <td><textarea th:field="*{medicine.dosage}" rows="2" cols="30" /></td>
                                 </tr>
                                 </tbody>
                             </table>

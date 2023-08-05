@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -32,11 +31,11 @@ public class CompletedAppointmentEntity {
     @JoinColumn(name = "planned_appointment_id")
     private PlannedAppointmentEntity plannedAppointment;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "physical_examination_id")
-    private Set<PhysicalExaminationEntity> physicalExaminations;
+    private PhysicalExaminationEntity physicalExamination;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "medicine_id")
-    private Set<MedicineEntity> medicines;
+    private MedicineEntity medicine;
 }

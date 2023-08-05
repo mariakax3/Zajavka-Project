@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.zajavka.api.dto.CompletedAppointmentDTO;
 import pl.zajavka.api.dto.PlannedAppointmentDTO;
 import pl.zajavka.api.dto.mapper.PlannedAppointmentMapper;
+import pl.zajavka.business.CompletedAppointmentService;
 import pl.zajavka.business.PlannedAppointmentService;
 import pl.zajavka.domain.PlannedAppointment;
 
@@ -24,6 +25,7 @@ public class AppointmentController {
 
     private final PlannedAppointmentService plannedAppointmentService;
     private final PlannedAppointmentMapper plannedAppointmentMapper;
+    private final CompletedAppointmentService completedAppointmentService;
 
     @GetMapping("/details/{plannedAppointmentId}")
     public ModelAndView appointmentDetails(@PathVariable String plannedAppointmentId) {
@@ -37,11 +39,13 @@ public class AppointmentController {
             @ModelAttribute("completedAppointmentDTO") CompletedAppointmentDTO dto,
             ModelMap modelMap
     ) {
-        Integer doctorId = plannedAppointmentService.getDoctorId(plannedAppointmentId);
+        PlannedAppointment plannedAppointment =
+                plannedAppointmentService.findPlannedAppointmentById(plannedAppointmentId);
+        Integer doctorId = plannedAppointment.getDoctor().getDoctorId();
 
-        //save do bazy
+        dto.setPlannedAppointment(plannedAppointmentMapper.map(plannedAppointment));
+        completedAppointmentService.saveDTO(dto);
 
-        modelMap.addAllAttributes(prepareNecessaryData(plannedAppointmentId));
         return String.format("redirect:/doctor/%s/history", doctorId);
     }
 

@@ -2,6 +2,7 @@ package pl.zajavka.infrastructure.database.repository;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
+import pl.zajavka.api.dto.CompletedAppointmentDTO;
 import pl.zajavka.business.dao.CompletedAppointmentDAO;
 import pl.zajavka.domain.CompletedAppointment;
 import pl.zajavka.infrastructure.database.repository.jpa.CompletedAppointmentJpaRepository;
@@ -22,5 +23,10 @@ public class CompletedAppointmentRepository implements CompletedAppointmentDAO {
                 .stream()
                 .map(completedAppointmentEntityMapper::mapFromEntity)
                 .toList();
+    }
+
+    @Override
+    public void saveDTO(CompletedAppointmentDTO dto) {
+        completedAppointmentJpaRepository.save(completedAppointmentEntityMapper.mapToEntity(dto));
     }
 }

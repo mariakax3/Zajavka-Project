@@ -3,12 +3,11 @@ package pl.zajavka.domain;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @With
 @Value
 @Builder
-@ToString(of = {"completedAppointmentId", "doctorComment", "physicalExaminations", "medicines"})
+@ToString(of = {"completedAppointmentId", "doctorComment", "physicalExamination", "medicine"})
 @EqualsAndHashCode(of = "completedAppointmentId")
 public class CompletedAppointment {
 
@@ -16,6 +15,6 @@ public class CompletedAppointment {
     String doctorComment;
     BigDecimal cost;
     PlannedAppointment plannedAppointment;
-    List<PhysicalExamination> physicalExaminations;
-    List<Medicine> medicines;
+    PhysicalExamination physicalExamination;
+    Medicine medicine;
 }

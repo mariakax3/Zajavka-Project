@@ -3,6 +3,7 @@ package pl.zajavka.business;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import pl.zajavka.api.dto.CompletedAppointmentDTO;
 import pl.zajavka.business.dao.CompletedAppointmentDAO;
 import pl.zajavka.business.dao.PlannedAppointmentDAO;
 import pl.zajavka.domain.CompletedAppointment;
@@ -42,5 +43,9 @@ public class CompletedAppointmentService {
 
         log.info("Completed appointments: [{}]", completedAppointments.size());
         return completedAppointments;
+    }
+
+    public void saveDTO(CompletedAppointmentDTO dto) {
+        completedAppointmentDAO.saveDTO(dto);
     }
 }

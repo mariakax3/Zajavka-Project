@@ -58,9 +58,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="physicalExamination : ${appointment.physicalExaminations}">
-                                <td th:text="${physicalExamination.name}"></td>
-                                <td th:text="${physicalExamination.result}"></td>
+                            <tr>
+                                <td th:text="${appointment.physicalExamination.name}"></td>
+                                <td th:text="${appointment.physicalExamination.result}"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -74,9 +74,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="medicine : ${appointment.medicines}">
-                                <td th:text="${medicine.name}"></td>
-                                <td th:text="${medicine.dosage}"></td>
+                            <tr>
+                                <td th:text="${appointment.medicine.name}"></td>
+                                <td th:text="${appointment.medicine.dosage}"></td>
                             </tr>
                             </tbody>
                         </table>
