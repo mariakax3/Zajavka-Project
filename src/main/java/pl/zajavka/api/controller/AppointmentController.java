@@ -1,17 +1,15 @@
 package pl.zajavka.api.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.zajavka.api.dto.CompletedAppointmentDTO;
 import pl.zajavka.api.dto.PlannedAppointmentDTO;
 import pl.zajavka.api.dto.mapper.PlannedAppointmentMapper;
 import pl.zajavka.business.CompletedAppointmentService;
-import pl.zajavka.business.MedicineService;
-import pl.zajavka.business.PhysicalExaminationService;
 import pl.zajavka.business.PlannedAppointmentService;
 import pl.zajavka.domain.PlannedAppointment;
 
@@ -28,8 +26,6 @@ public class AppointmentController {
     private final PlannedAppointmentService plannedAppointmentService;
     private final PlannedAppointmentMapper plannedAppointmentMapper;
     private final CompletedAppointmentService completedAppointmentService;
-    private final MedicineService medicineService;
-    private final PhysicalExaminationService physicalExaminationService;
 
     @GetMapping("/details/{plannedAppointmentId}")
     public ModelAndView appointmentDetails(@PathVariable String plannedAppointmentId) {
@@ -40,8 +36,7 @@ public class AppointmentController {
     @PostMapping("/details/{plannedAppointmentId}")
     public String addAppointmentDetails(
             @PathVariable String plannedAppointmentId,
-            @ModelAttribute("completedAppointmentDTO") CompletedAppointmentDTO dto,
-            ModelMap modelMap
+            @Valid @ModelAttribute("completedAppointmentDTO") CompletedAppointmentDTO dto
     ) {
         PlannedAppointment plannedAppointment =
                 plannedAppointmentService.findPlannedAppointmentById(plannedAppointmentId);
