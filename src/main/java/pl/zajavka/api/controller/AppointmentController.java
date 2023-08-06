@@ -94,7 +94,7 @@ public class AppointmentController {
                 "patientId", patientId,
                 "plannedAppointmentDTOs", plannedAppointmentDTOs
         );
-        return new ModelAndView("appointment_cancel", data);
+        return new ModelAndView("appointment_cancel_patient", data);
     }
 
     @DeleteMapping("/cancel/{plannedAppointmentId}/patient/{patientId}")
@@ -104,6 +104,26 @@ public class AppointmentController {
     ) {
         plannedAppointmentService.cancelAppointment(plannedAppointmentId);
         return String.format("redirect:/patient/%s", patientId);
+    }
+
+    @GetMapping("/cancel/doctor/{doctorId}")
+    public ModelAndView cancelAppointmentByDoctor(@PathVariable String doctorId) {
+        List<PlannedAppointmentDTO> plannedAppointmentDTOs = controllerUtils.getPlannedAppointmentsForDoctor(doctorId);
+
+        Map<String, ?> data = Map.of(
+                "doctorId", doctorId,
+                "plannedAppointmentDTOs", plannedAppointmentDTOs
+        );
+        return new ModelAndView("appointment_cancel_doctor", data);
+    }
+
+    @DeleteMapping("/cancel/{plannedAppointmentId}/doctor/{doctorId}")
+    @Transactional
+    public String cancelAppointmentByDoctor(@PathVariable String doctorId,
+            @PathVariable String plannedAppointmentId
+    ) {
+        plannedAppointmentService.cancelAppointment(plannedAppointmentId);
+        return String.format("redirect:/doctor/%s", doctorId);
     }
 
     private Map<String, ?> prepareDataForAppointmentDetails(String plannedAppointmentId) {

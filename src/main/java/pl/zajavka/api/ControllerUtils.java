@@ -32,4 +32,17 @@ public class ControllerUtils {
                         .filter(appointment -> !completedAppointmentIds.contains(appointment))
                         .toList();
     }
+
+    public List<PlannedAppointmentDTO> getPlannedAppointmentsForDoctor(String doctorId) {
+        List<PlannedAppointmentDTO> completedAppointmentIds =
+                completedAppointmentService.findCompletedAppointmentsByDoctorId(doctorId).stream()
+                        .map(completedAppointmentMapper::map)
+                        .map(CompletedAppointmentDTO::getPlannedAppointment)
+                        .toList();
+
+        return plannedAppointmentService.findPlannedAppointmentsForDoctor(doctorId).stream()
+                        .map(plannedAppointmentMapper::map)
+                        .filter(appointment -> !completedAppointmentIds.contains(appointment))
+                        .toList();
+    }
 }
