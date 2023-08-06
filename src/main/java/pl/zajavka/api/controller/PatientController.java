@@ -6,16 +6,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.zajavka.api.ControllerUtils;
 import pl.zajavka.api.dto.CompletedAppointmentDTO;
 import pl.zajavka.api.dto.DoctorDTO;
 import pl.zajavka.api.dto.PlannedAppointmentDTO;
 import pl.zajavka.api.dto.mapper.CompletedAppointmentMapper;
 import pl.zajavka.api.dto.mapper.DoctorMapper;
-import pl.zajavka.api.dto.mapper.PlannedAppointmentMapper;
 import pl.zajavka.business.CompletedAppointmentService;
 import pl.zajavka.business.DoctorService;
 import pl.zajavka.business.PatientService;
-import pl.zajavka.business.PlannedAppointmentService;
 import pl.zajavka.domain.Patient;
 
 import java.util.List;
@@ -26,12 +25,11 @@ import java.util.List;
 public class PatientController {
 
     public static final String PATIENT = "/patient";
+    private final ControllerUtils controllerUtils;
 
     private final DoctorService doctorService;
     private final DoctorMapper doctorMapper;
     private final PatientService patientService;
-    private final PlannedAppointmentService plannedAppointmentService;
-    private final PlannedAppointmentMapper plannedAppointmentMapper;
     private final CompletedAppointmentService completedAppointmentService;
     private final CompletedAppointmentMapper completedAppointmentMapper;
 
@@ -41,17 +39,7 @@ public class PatientController {
                 .map(doctorMapper::map)
                 .toList();
 
-        List<PlannedAppointmentDTO> completedAppointmentIds =
-                completedAppointmentService.findCompletedAppointmentsByPatientId(patientId).stream()
-                        .map(completedAppointmentMapper::map)
-                        .map(CompletedAppointmentDTO::getPlannedAppointment)
-                        .toList();
-
-        List<PlannedAppointmentDTO> plannedAppointmentDTOs =
-                plannedAppointmentService.findPlannedAppointmentsForPatient(patientId).stream()
-                        .map(plannedAppointmentMapper::map)
-                        .filter(appointment -> !completedAppointmentIds.contains(appointment))
-                        .toList();
+        List<PlannedAppointmentDTO> plannedAppointmentDTOs = controllerUtils.getPlannedAppointmentsForPatient(patientId);
 
         model.addAttribute("patientId", patientId);
         model.addAttribute("doctorDTOs", doctorDTOs);

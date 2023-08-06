@@ -37,4 +37,8 @@ public class PlannedAppointmentService {
     public void saveDTO(PlannedAppointmentDTO dto) {
         plannedAppointmentDAO.saveDTO(dto);
     }
+
+    public void cancelAppointment(String plannedAppointmentId) {
+        plannedAppointmentDAO.cancelAppointment(plannedAppointmentId);
+    }
 }

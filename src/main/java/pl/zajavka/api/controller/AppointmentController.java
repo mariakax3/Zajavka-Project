@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import pl.zajavka.api.ControllerUtils;
 import pl.zajavka.api.dto.*;
 import pl.zajavka.api.dto.mapper.DoctorMapper;
 import pl.zajavka.api.dto.mapper.PatientMapper;
@@ -28,6 +29,7 @@ import java.util.Map;
 public class AppointmentController {
 
     public static final String APPOINTMENT = "/appointment";
+    private final ControllerUtils controllerUtils;
 
     private final DoctorService doctorService;
     private final DoctorMapper doctorMapper;
@@ -81,6 +83,26 @@ public class AppointmentController {
                 .build();
         plannedAppointmentService.saveDTO(plannedAppointmentDTO);
 
+        return String.format("redirect:/patient/%s", patientId);
+    }
+
+    @GetMapping("/cancel/patient/{patientId}")
+    public ModelAndView cancelAppointmentByPatient(@PathVariable String patientId) {
+        List<PlannedAppointmentDTO> plannedAppointmentDTOs = controllerUtils.getPlannedAppointmentsForPatient(patientId);
+
+        Map<String, ?> data = Map.of(
+                "patientId", patientId,
+                "plannedAppointmentDTOs", plannedAppointmentDTOs
+        );
+        return new ModelAndView("appointment_cancel", data);
+    }
+
+    @DeleteMapping("/cancel/{plannedAppointmentId}/patient/{patientId}")
+    @Transactional
+    public String cancelAppointmentByPatient(@PathVariable String patientId,
+            @PathVariable String plannedAppointmentId
+    ) {
+        plannedAppointmentService.cancelAppointment(plannedAppointmentId);
         return String.format("redirect:/patient/%s", patientId);
     }
 

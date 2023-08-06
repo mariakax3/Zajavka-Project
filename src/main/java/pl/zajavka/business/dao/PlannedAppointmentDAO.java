@@ -14,4 +14,6 @@ public interface PlannedAppointmentDAO {
     PlannedAppointment findPlannedAppointmentById(String plannedAppointmentId);
 
     void saveDTO(PlannedAppointmentDTO dto);
+
+    void cancelAppointment(String plannedAppointmentId);
 }

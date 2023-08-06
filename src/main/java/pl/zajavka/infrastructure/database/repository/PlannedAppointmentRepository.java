@@ -45,4 +45,9 @@ public class PlannedAppointmentRepository implements PlannedAppointmentDAO {
     public void saveDTO(PlannedAppointmentDTO dto) {
         plannedAppointmentJpaRepository.save(plannedAppointmentEntityMapper.mapToEntity(dto));
     }
+
+    @Override
+    public void cancelAppointment(String plannedAppointmentId) {
+        plannedAppointmentJpaRepository.deleteById(Integer.parseInt(plannedAppointmentId));
+    }
 }

@@ -31,14 +31,13 @@
                 <div class="col-md-12">
                     <div class="row mt-3">
                         <div class="col-md-3">
-                            <label for="doctor">Select doctor:</label>
+                            <label for="doctor">Select doctor by PESEL:</label>
                         </div>
                         <div class="col-md-3">
                             <select id="doctor" th:field="*{doctorPesel}">
                                 <option th:each="doctorPesel: ${doctorPesels}"
                                         th:value="${doctorPesel}"
                                         th:text="${doctorPesel}">
-<!--                                        th:text="${doctor.name} + ' ' + ${doctor.surname} + ' - ' + ${doctor.specialization} + ' - ' + ${doctor.pesel}">-->
                                 </option>
                             </select>
                         </div>
@@ -75,12 +74,12 @@
             </div>
         </form>
 
-    </div>
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <a th:href="@{'/patient/' + ${patientId}}" class="btn btn-success" role="button">Go back</a>
+            </div>
+        </div>
 
-<script/>
-    $('#datetimepicker1').datetimepicker({
-    format: 'DD/MM/YYYY h:mm A'
-    });
-    </script>
+    </div>
 </body>
 </html>

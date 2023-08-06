@@ -86,7 +86,7 @@
                     <a th:href="@{'/appointment/new/' + ${patientId}}" class="btn btn-success" role="button">Make an appointment</a>
                 </div>
                 <div class="col-md-4">
-                    <a th:href="@{/appointment/cancel}" class="btn btn-success" role="button">Cancel an appointment</a>
+                    <a th:href="@{'/appointment/cancel/patient/' + ${patientId}}" class="btn btn-success" role="button">Cancel an appointment</a>
                 </div>
                 <div class="col-md-4">
                     <a th:href="@{'/patient/' + ${patientId} + '/history'}" class="btn btn-success" role="button">See treatment history</a>
