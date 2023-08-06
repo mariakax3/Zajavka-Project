@@ -9,20 +9,17 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PlannedAppointmentDTO {
+public class NewAppointmentDTO {
 
-    private Integer plannedAppointmentId;
     private String dateTime;
     private String patientComment;
-    private PatientDTO patient;
-    private DoctorDTO doctor;
+    private String doctorPesel;
 
-    public static PlannedAppointmentDTO buildDefault() {
-        return PlannedAppointmentDTO.builder()
+    public static NewAppointmentDTO buildDefault() {
+        return NewAppointmentDTO.builder()
                 .dateTime("2023-08-30 13:45")
                 .patientComment("Nawracające bóle brzucha")
-                .patient(PatientDTO.buildDefault())
-                .doctor(DoctorDTO.buildDefault())
+                .doctorPesel("78041156534")
                 .build();
     }
 }

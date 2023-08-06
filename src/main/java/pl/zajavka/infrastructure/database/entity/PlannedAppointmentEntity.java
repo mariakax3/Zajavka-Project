@@ -27,11 +27,11 @@ public class PlannedAppointmentEntity {
     @Column(name = "patient_comment")
     private String patientComment;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "patient_id")
     private PatientEntity patient;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "doctor_id")
     private DoctorEntity doctor;
 

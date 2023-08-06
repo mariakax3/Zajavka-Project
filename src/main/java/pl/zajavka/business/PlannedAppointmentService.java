@@ -3,6 +3,7 @@ package pl.zajavka.business;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import pl.zajavka.api.dto.PlannedAppointmentDTO;
 import pl.zajavka.business.dao.PlannedAppointmentDAO;
 import pl.zajavka.domain.PlannedAppointment;
 
@@ -22,11 +23,18 @@ public class PlannedAppointmentService {
         return plannedAppointments;
     }
 
+    public List<PlannedAppointment> findPlannedAppointmentsForPatient(String patientId) {
+        List<PlannedAppointment> plannedAppointments =
+                plannedAppointmentDAO.findPlannedAppointmentsForPatient(patientId);
+        log.info("Planned appointments for patient with ID [{}] : [{}]", patientId, plannedAppointments.size());
+        return plannedAppointments;
+    }
+
     public PlannedAppointment findPlannedAppointmentById(String plannedAppointmentId) {
         return plannedAppointmentDAO.findPlannedAppointmentById(plannedAppointmentId);
     }
 
-    public Integer getDoctorId(String plannedAppointmentId) {
-        return plannedAppointmentDAO.getDoctorId(plannedAppointmentId);
+    public void saveDTO(PlannedAppointmentDTO dto) {
+        plannedAppointmentDAO.saveDTO(dto);
     }
 }

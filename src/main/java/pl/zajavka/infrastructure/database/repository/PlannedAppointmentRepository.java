@@ -2,9 +2,9 @@ package pl.zajavka.infrastructure.database.repository;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
+import pl.zajavka.api.dto.PlannedAppointmentDTO;
 import pl.zajavka.business.dao.PlannedAppointmentDAO;
 import pl.zajavka.domain.PlannedAppointment;
-import pl.zajavka.infrastructure.database.entity.DoctorEntity;
 import pl.zajavka.infrastructure.database.entity.PlannedAppointmentEntity;
 import pl.zajavka.infrastructure.database.repository.jpa.PlannedAppointmentJpaRepository;
 import pl.zajavka.infrastructure.database.repository.mapper.PlannedAppointmentEntityMapper;
@@ -42,10 +42,7 @@ public class PlannedAppointmentRepository implements PlannedAppointmentDAO {
     }
 
     @Override
-    public Integer getDoctorId(String plannedAppointmentId) {
-        return plannedAppointmentJpaRepository.findById(Integer.parseInt(plannedAppointmentId))
-                .map(PlannedAppointmentEntity::getDoctor)
-                .map(DoctorEntity::getDoctorId)
-                .get();
+    public void saveDTO(PlannedAppointmentDTO dto) {
+        plannedAppointmentJpaRepository.save(plannedAppointmentEntityMapper.mapToEntity(dto));
     }
 }

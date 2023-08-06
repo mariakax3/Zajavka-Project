@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en-GB">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+          crossorigin="anonymous">
+    <title>Zajavka Medical Clinic</title>
+</head>
+
+<body>
+    <div class="container">
+        <br>
+        <h1>Zajavka Medical Clinic!</h1>
+    </div>
+
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <a th:href="@{/}" class="btn btn-info" role="button">Go back to the main page</a>
+            </div>
+        </div>
+
+        <br>
+
+        <h2>Set details of your appointment:</h2>
+
+        <form action="#" th:action="@{'/appointment/new/' + ${patientId}}" th:object="${newAppointmentDTO}" method="post">
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="doctor">Select doctor:</label>
+                        </div>
+                        <div class="col-md-3">
+                            <select id="doctor" th:field="*{doctorPesel}">
+                                <option th:each="doctorPesel: ${doctorPesels}"
+                                        th:value="${doctorPesel}"
+                                        th:text="${doctorPesel}">
+<!--                                        th:text="${doctor.name} + ' ' + ${doctor.surname} + ' - ' + ${doctor.specialization} + ' - ' + ${doctor.pesel}">-->
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="patientComment">What is happening:</label>
+                        </div>
+                        <div class="col-md-3">
+                            <textarea id="patientComment" th:field="*{patientComment}" rows="5" cols="70" required="required"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <label for="dateTime">Select the date and time:</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input id="dateTime" th:field="*{dateTime}" type="datetime-local">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <input type="submit" value="Confirm" class="btn btn-success">
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+<script/>
+    $('#datetimepicker1').datetimepicker({
+    format: 'DD/MM/YYYY h:mm A'
+    });
+    </script>
+</body>
+</html>

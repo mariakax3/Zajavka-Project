@@ -1,5 +1,6 @@
 package pl.zajavka.business.dao;
 
+import pl.zajavka.api.dto.PlannedAppointmentDTO;
 import pl.zajavka.domain.PlannedAppointment;
 
 import java.util.List;
@@ -12,5 +13,5 @@ public interface PlannedAppointmentDAO {
 
     PlannedAppointment findPlannedAppointmentById(String plannedAppointmentId);
 
-    Integer getDoctorId(String plannedAppointmentId);
+    void saveDTO(PlannedAppointmentDTO dto);
 }

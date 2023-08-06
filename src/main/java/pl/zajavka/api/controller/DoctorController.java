@@ -59,4 +59,10 @@ public class DoctorController {
 
         return "doctor_history";
     }
+
+    @GetMapping("/{doctorId}/calendar")
+    public String doctorCalendar(@PathVariable String doctorId) {
+
+        return "doctor_calendar";
+    }
 }

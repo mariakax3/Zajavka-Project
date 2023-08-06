@@ -52,12 +52,38 @@
 
         <br>
 
+        <div th:if="${#lists.isEmpty(plannedAppointmentDTOs)}">
+            <h5>You currently have no appointments scheduled. Feel free!</h5>
+        </div>
+
+        <div th:if="${not #lists.isEmpty(plannedAppointmentDTOs)}">
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th>Date and time</th>
+                    <th>Doctor</th>
+                    <th>Your comment</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="appointment : ${plannedAppointmentDTOs}">
+                    <td th:text="${appointment.dateTime}"></td>
+                    <td th:text="${appointment.doctor.name} + ' ' + ${appointment.doctor.surname}"></td>
+                    <td th:text="${appointment.patientComment}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <br>
+        <br>
+
         <div class="container">
             <h2>Do what You want!</h2>
 
             <div class="row mt-3">
                 <div class="col-md-4">
-                    <a th:href="@{/appointment/new}" class="btn btn-success" role="button">Make an appointment</a>
+                    <a th:href="@{'/appointment/new/' + ${patientId}}" class="btn btn-success" role="button">Make an appointment</a>
                 </div>
                 <div class="col-md-4">
                     <a th:href="@{/appointment/cancel}" class="btn btn-success" role="button">Cancel an appointment</a>
@@ -69,7 +95,6 @@
             <br>
             <br>
         </div>
-
     </div>
 </body>
 </html>

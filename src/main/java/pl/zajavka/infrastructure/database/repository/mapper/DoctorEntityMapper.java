@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.stereotype.Component;
+import pl.zajavka.api.dto.DoctorDTO;
 import pl.zajavka.domain.Doctor;
 import pl.zajavka.infrastructure.database.entity.DoctorEntity;
 
@@ -13,4 +14,6 @@ public interface DoctorEntityMapper {
 
     @Mapping(target = "appointments", ignore = true)
     Doctor mapFromEntity(DoctorEntity entity);
+
+    DoctorEntity mapToEntity(DoctorDTO dto);
 }

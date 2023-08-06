@@ -20,4 +20,9 @@ public class DoctorService {
         log.info("Available doctors: [{}]", availableDoctors.size());
         return availableDoctors;
     }
+
+    public Doctor findByPesel(String pesel) {
+        return doctorDAO.findByPesel(pesel);
+    }
+
 }

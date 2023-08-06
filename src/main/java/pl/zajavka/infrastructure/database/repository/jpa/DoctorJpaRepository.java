@@ -6,4 +6,6 @@ import pl.zajavka.infrastructure.database.entity.DoctorEntity;
 
 @Repository
 public interface DoctorJpaRepository extends JpaRepository<DoctorEntity, Integer> {
+
+    DoctorEntity findByPesel(String pesel);
 }

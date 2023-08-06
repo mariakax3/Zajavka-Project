@@ -25,9 +25,4 @@ public interface CompletedAppointmentEntityMapper {
     @Mapping(target = "plannedAppointment.doctor.appointments", ignore = true)
     @Mapping(target = "plannedAppointment.patient.appointments", ignore = true)
     CompletedAppointmentEntity mapToEntity(CompletedAppointmentDTO dto);
-
-//    @Named("mapDateTime")
-//    default OffsetDateTime mapDateTime(String dateTime) {
-//        return OffsetDateTime.of(LocalDateTime.ofPa)
-//    }
 }

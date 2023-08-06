@@ -7,4 +7,6 @@ import java.util.List;
 public interface DoctorDAO {
 
     List<Doctor> findDoctors();
+
+    Doctor findByPesel(String pesel);
 }
