@@ -35,4 +35,7 @@ public class DoctorEntity {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "doctor")
     private Set<PlannedAppointmentEntity> appointments;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "doctor")
+    private Set<DoctorAvailabilityEntity> availabilities;
 }

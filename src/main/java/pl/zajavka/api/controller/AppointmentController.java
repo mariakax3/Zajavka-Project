@@ -5,17 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.zajavka.api.ControllerUtils;
 import pl.zajavka.api.dto.*;
+import pl.zajavka.api.dto.mapper.DoctorAvailabilityMapper;
 import pl.zajavka.api.dto.mapper.DoctorMapper;
 import pl.zajavka.api.dto.mapper.PatientMapper;
 import pl.zajavka.api.dto.mapper.PlannedAppointmentMapper;
-import pl.zajavka.business.CompletedAppointmentService;
-import pl.zajavka.business.DoctorService;
-import pl.zajavka.business.PatientService;
-import pl.zajavka.business.PlannedAppointmentService;
+import pl.zajavka.business.*;
 import pl.zajavka.domain.Doctor;
 import pl.zajavka.domain.PlannedAppointment;
 
@@ -38,6 +37,8 @@ public class AppointmentController {
     private final PlannedAppointmentService plannedAppointmentService;
     private final PlannedAppointmentMapper plannedAppointmentMapper;
     private final CompletedAppointmentService completedAppointmentService;
+    private final DoctorAvailabilityService doctorAvailabilityService;
+    private final DoctorAvailabilityMapper doctorAvailabilityMapper;
 
     @GetMapping("/details/{plannedAppointmentId}")
     public ModelAndView appointmentDetails(@PathVariable String plannedAppointmentId) {
@@ -70,7 +71,8 @@ public class AppointmentController {
     @PostMapping("/new/{patientId}")
     @Transactional
     public String makeAppointment(@PathVariable String patientId,
-            @Valid @ModelAttribute("newAppointmentDTO") NewAppointmentDTO dto
+            @Valid @ModelAttribute("newAppointmentDTO") NewAppointmentDTO dto,
+            Model model
     ) {
         Doctor doctor = doctorService.findByPesel(dto.getDoctorPesel());
         DoctorDTO doctorDTO = doctorMapper.map(doctor);
@@ -83,7 +85,15 @@ public class AppointmentController {
                 .build();
         plannedAppointmentService.saveDTO(plannedAppointmentDTO);
 
-        return String.format("redirect:/patient/%s", patientId);
+        List<DoctorAvailabilityDTO> doctorAvailabilityDTOs =
+                doctorAvailabilityService.findByDoctorId(doctor.getDoctorId().toString()).stream()
+                        .map(doctorAvailabilityMapper::map)
+                        .toList();
+
+        model.addAttribute("doctorAvailabilityDTOs", doctorAvailabilityDTOs);
+
+//        return String.format("redirect:/patient/%s", patientId);
+        return "appointment_new";
     }
 
     @GetMapping("/cancel/patient/{patientId}")

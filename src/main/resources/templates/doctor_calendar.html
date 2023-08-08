@@ -23,7 +23,40 @@
         </div>
 
         <br>
+        <div th:if="${#lists.isEmpty(doctorAvailabilityDTOs)}">
+            <h5>Currently you have no available time for appointments.</h5>
+        </div>
+        <br>
 
+        <div th:if="${not #lists.isEmpty(doctorAvailabilityDTOs)}">
+            <br>
+            <h5>Here are your available dates and times:</h5>
+            <br>
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th style="text-align: center">Date and time</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="dto : ${doctorAvailabilityDTOs}">
+                    <td style="text-align: center" th:text="${dto}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <a th:href="@{'/doctor/' + ${doctorId} + '/calendar/update'}" class="btn btn-success" role="button">Update your calendar</a>
+            </div>
+        </div>
+
+        <br>
+        <br>
 
     </div>
 </body>
