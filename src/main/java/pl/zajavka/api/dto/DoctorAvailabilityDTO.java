@@ -25,4 +25,13 @@ public class DoctorAvailabilityDTO {
     public String toString() {
         return String.format("%02d.%02d.%d r. godz. %s", day, month, year, hour);
     }
+
+    public static DoctorAvailabilityDTO copyDTO(DoctorAvailabilityDTO dto) {
+        DoctorAvailabilityDTO newDTO = new DoctorAvailabilityDTO();
+        newDTO.setYear(dto.getYear());
+        newDTO.setMonth(dto.getMonth());
+        newDTO.setDay(dto.getDay());
+        return newDTO;
+    }
+
 }
