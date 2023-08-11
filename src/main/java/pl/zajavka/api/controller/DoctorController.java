@@ -1,11 +1,10 @@
 package pl.zajavka.api.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.zajavka.api.ControllerUtils;
 import pl.zajavka.api.dto.CompletedAppointmentDTO;
 import pl.zajavka.api.dto.DoctorAvailabilityDTO;
@@ -16,8 +15,10 @@ import pl.zajavka.business.CompletedAppointmentService;
 import pl.zajavka.business.DoctorAvailabilityService;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Controller
 @AllArgsConstructor
 @RequestMapping(DoctorController.DOCTOR)
@@ -69,19 +70,40 @@ public class DoctorController {
 
     @GetMapping("/{doctorId}/calendar/update")
     public String doctorCalendarUpdate(@PathVariable String doctorId, Model model) {
-        List<String> doctorAvailabilityDTOs =
+        List<DoctorAvailabilityDTO> doctorAvailabilityDTOs =
                 doctorAvailabilityService.findByDoctorId(doctorId).stream()
                         .map(doctorAvailabilityMapper::map)
-                        .map(DoctorAvailabilityDTO::toString)
                         .toList();
+        doctorAvailabilityDTOs.forEach(dto -> dto.setChecked(true));
 
         List<DoctorAvailabilityDTO> thisMonth = controllerUtils.getAvailableDatesForMonth(LocalDate.now().getMonthValue());
-        List<DoctorAvailabilityDTO> nextMonth = controllerUtils.getAvailableDatesForMonth(LocalDate.now().getMonthValue()+1);
+        List<DoctorAvailabilityDTO> nextMonth = controllerUtils.getAvailableDatesForMonth(LocalDate.now().getMonthValue() + 1);
+
+        thisMonth.stream()
+                .filter(doctorAvailabilityDTOs::contains)
+                .forEach(dto -> dto.setChecked(true));
+        nextMonth.stream()
+                .filter(doctorAvailabilityDTOs::contains)
+                .forEach(dto -> dto.setChecked(true));
+
+        log.info("### THIS MONTH SIZE: {}", thisMonth.size());
+        log.info("### NEXT MONTH SIZE: {}", nextMonth.size());
 
         model.addAttribute("thisMonth", thisMonth);
         model.addAttribute("nextMonth", nextMonth);
-        model.addAttribute("doctorAvailabilityDTOs", doctorAvailabilityDTOs);
+        model.addAttribute("DTOs", doctorAvailabilityDTOs);
+        model.addAttribute("availability", new ArrayList<>());
 
         return "doctor_calendar_update";
+    }
+
+    @PostMapping("/{doctorId}/calendar/update")
+    public String doctorCalendarUpdate(
+            @PathVariable String doctorId,
+            @ModelAttribute("availability") ArrayList<DoctorAvailabilityDTO> availability
+    ) {
+        log.info("### AVAILABILITY SIZE: {}", availability.size());
+
+        return String.format("redirect:/doctor/%s/calendar", doctorId);
     }
 }

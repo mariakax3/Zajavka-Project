@@ -59,7 +59,7 @@ public class ControllerUtils {
         LocalDate today = LocalDate.now();
 
         YearMonth ym = YearMonth.of(today.getYear(), month);
-        LocalDate beginWith = ym.atDay(today.getMonthValue() != month ? 1 : today.getDayOfMonth());
+        LocalDate beginWith = ym.atDay(today.getMonthValue() != month ? 1 : today.getDayOfMonth() + 1);
         LocalDate endWith = ym.plusMonths(1).atDay(1);
         beginWith.datesUntil(endWith).forEach(date ->
                 availableDates.add(DoctorAvailabilityDTO.builder()

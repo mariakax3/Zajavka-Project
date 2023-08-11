@@ -26,51 +26,50 @@
         <h5>Choose dates and times:</h5>
         <br>
 
-        <div class="row mt-3">
-            <div class="col">
-                <h5>Current month:</h5>
-                <table class="table">
-                    <thead class="table-dark">
-                    <tr>
-                        <th></th>
-                        <th>Date and time</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="date : ${thisMonth}">
-                        <td><input type="checkbox" name="dateTime" th:checked="${#lists.contains(doctorAvailabilityDTOs, date)}"/></td>
-                        <td th:text="${date}"></td>
-                    </tr>
-                    </tbody>
-                </table>
+        <form action="#" th:action="@{'/doctor/' + ${doctorId} + '/calendar/update'}" th:object="${availability}" method="post">
+            <div class="row mt-3">
+                <div class="col">
+                    <h5>Current month:</h5>
+                    <table class="table">
+                        <thead class="table-dark">
+                        <tr>
+                            <th></th>
+                            <th>Date and time</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="date : ${thisMonth}">
+                            <td><input type="checkbox" name="dateTime" th:value="${date}" th:checked="${date.checked}"/></td>
+                            <td th:text="${date}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col">
+                    <table class="table">
+                        <h5>Next month:</h5>
+                        <thead class="table-dark">
+                        <tr>
+                            <th></th>
+                            <th>Date and time</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="date : ${nextMonth}">
+                            <td><input type="checkbox" name="dateTime" th:value="${date}" th:checked="${date.checked}"/></td>
+                            <td th:text="${date}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="col">
-                <table class="table">
-                    <h5>Next month:</h5>
-                    <thead class="table-dark">
-                    <tr>
-                        <th></th>
-                        <th>Date and time</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="date : ${nextMonth}">
-                        <td><input type="checkbox" name="dateTime" th:checked="${#lists.contains(doctorAvailabilityDTOs, date)}"/></td>
-                        <td th:text="${date}"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
-        <br>
-        <br>
-
-        <div class="row mt-3">
-            <div class="col-md-4">
-                <a th:href="@{'/doctor/' + ${doctorId} + '/calendar'}" class="btn btn-success" role="button">Confirm</a>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <input type="submit" value="Confirm" class="btn btn-success">
+                </div>
             </div>
-        </div>
+        </form>
 
         <br>
         <br>
