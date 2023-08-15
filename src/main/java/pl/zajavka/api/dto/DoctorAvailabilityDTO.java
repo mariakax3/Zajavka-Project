@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import pl.zajavka.infrastructure.database.entity.DoctorEntity;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Data
@@ -16,16 +17,14 @@ import java.util.Objects;
 public class DoctorAvailabilityDTO {
 
     private Integer doctorAvailabilityId;
-    private Integer year;
-    private Integer month;
-    private Integer day;
+    private LocalDate date;
     private Time hour;
     private DoctorEntity doctor;
     private boolean checked;
 
     @Override
     public String toString() {
-        return String.format("%02d.%02d.%d r. godz. %s", day, month, year, hour);
+        return String.format("%s, godz. %s", date, hour);
     }
 
     @Override
@@ -33,19 +32,17 @@ public class DoctorAvailabilityDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DoctorAvailabilityDTO that = (DoctorAvailabilityDTO) o;
-        return Objects.equals(year, that.year) && Objects.equals(month, that.month) && Objects.equals(day, that.day) && Objects.equals(hour, that.hour);
+        return Objects.equals(date, that.date) && Objects.equals(hour, that.hour);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(year, month, day, hour);
+        return Objects.hash(date, hour);
     }
 
     public static DoctorAvailabilityDTO copyDTO(DoctorAvailabilityDTO dto) {
         DoctorAvailabilityDTO newDTO = new DoctorAvailabilityDTO();
-        newDTO.setYear(dto.getYear());
-        newDTO.setMonth(dto.getMonth());
-        newDTO.setDay(dto.getDay());
+        newDTO.setDate(dto.getDate());
         return newDTO;
     }
 

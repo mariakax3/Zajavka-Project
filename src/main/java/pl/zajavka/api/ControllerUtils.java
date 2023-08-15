@@ -63,10 +63,8 @@ public class ControllerUtils {
         LocalDate endWith = ym.plusMonths(1).atDay(1);
         beginWith.datesUntil(endWith).forEach(date ->
                 availableDates.add(DoctorAvailabilityDTO.builder()
-                .day(date.getDayOfMonth())
-                .month(date.getMonthValue())
-                .year(date.getYear())
-                .build()));
+                        .date(date)
+                        .build()));
 
         return setHours(availableDates);
     }

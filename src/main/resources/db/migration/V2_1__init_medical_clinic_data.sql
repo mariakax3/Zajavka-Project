@@ -23,7 +23,7 @@ VALUES ('Pantopraz 20 mg', '1 tabletka na czczo');
 INSERT INTO completed_appointment (doctor_comment, cost, planned_appointment_id, physical_examination_id, medicine_id)
 VALUES ('Do obserwacji', 250, 1, 1, 1);
 
-INSERT INTO doctor_availability (year, month, day, hour, doctor_id)
-VALUES (2023, 9, 1, '10:30', 1),
-       (2023, 9, 1, '11:00', 1),
-       (2023, 9, 1, '11:30', 1);
+INSERT INTO doctor_availability (date, hour, doctor_id)
+VALUES ('2023-09-01', '10:30', 1),
+       ('2023-09-01', '11:00', 1),
+       ('2023-09-01', '11:30', 1);

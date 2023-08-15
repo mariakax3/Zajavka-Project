@@ -74,7 +74,6 @@ public class DoctorController {
                 doctorAvailabilityService.findByDoctorId(doctorId).stream()
                         .map(doctorAvailabilityMapper::map)
                         .toList();
-        doctorAvailabilityDTOs.forEach(dto -> dto.setChecked(true));
 
         List<DoctorAvailabilityDTO> thisMonth = controllerUtils.getAvailableDatesForMonth(LocalDate.now().getMonthValue());
         List<DoctorAvailabilityDTO> nextMonth = controllerUtils.getAvailableDatesForMonth(LocalDate.now().getMonthValue() + 1);
@@ -89,10 +88,16 @@ public class DoctorController {
         log.info("### THIS MONTH SIZE: {}", thisMonth.size());
         log.info("### NEXT MONTH SIZE: {}", nextMonth.size());
 
+        int numberOfAppointmentsToAdd = 30;
+        List<DoctorAvailabilityDTO> availability = new ArrayList<>();
+        for (int i = 0; i < numberOfAppointmentsToAdd; i++) {
+            availability.add(new DoctorAvailabilityDTO());
+        }
+        log.info("### AVAILABILITY SIZE: {}", availability.size());
+
         model.addAttribute("thisMonth", thisMonth);
         model.addAttribute("nextMonth", nextMonth);
-        model.addAttribute("DTOs", doctorAvailabilityDTOs);
-        model.addAttribute("availability", new ArrayList<>());
+        model.addAttribute("availability", availability);
 
         return "doctor_calendar_update";
     }
@@ -100,7 +105,7 @@ public class DoctorController {
     @PostMapping("/{doctorId}/calendar/update")
     public String doctorCalendarUpdate(
             @PathVariable String doctorId,
-            @ModelAttribute("availability") ArrayList<DoctorAvailabilityDTO> availability
+            @ModelAttribute ArrayList<DoctorAvailabilityDTO> availability
     ) {
         log.info("### AVAILABILITY SIZE: {}", availability.size());
 

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Time;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -21,14 +22,8 @@ public class DoctorAvailabilityEntity {
     @Column(name = "doctor_availability_id")
     private Integer doctorAvailabilityId;
 
-    @Column(name = "year")
-    private Integer year;
-
-    @Column(name = "month")
-    private Integer month;
-
-    @Column(name = "day")
-    private Integer day;
+    @Column(name = "date")
+    private LocalDate date;
 
     @Column(name = "hour")
     private Time hour;
